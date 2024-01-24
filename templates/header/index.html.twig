@@ -1,0 +1,369 @@
+<header  class="header_wrap fixed-top header_with_topbar active">
+    <div  class="top-header" style="">
+        <div  class="container">
+            <div  class="row align-items-center">
+                <div  class="col-md-6">
+                    <div 
+                        class="d-flex align-items-center justify-content-center justify-content-md-start">
+                        <div  class="me-3">
+                            <div class="ddOutOfVision" id="msdrpdd20_msddHolder"
+                                style="height: 0px; overflow: hidden; position: absolute;"><select
+                                     name="countries" class="custome_select" id="msdrpdd20"
+                                    tabindex="-1">
+                                        <option  value="EUR" data-title="EUR"
+                                        ng-reflect-value="EUR">EUR</option>
+                                    {# dans ce cas ou déployement au EU et GB#}
+                                    {# <option  value="USD" data-title="USD"
+                                        ng-reflect-value="USD">USD</option> #}
+                                    {# <option  value="GBR" data-title="GBR"
+                                        ng-reflect-value="GBR">GBR</option> #}
+                                </select></div>
+                            <div class="dd ddcommon borderRadius" id="msdrpdd20_msdd" tabindex="0" style="width: 52px;">
+                                <div class="ddTitle borderRadiusTp"><span class="divider"></span><span
+                                        class="ddArrow arrowoff"></span><span class="ddTitleText "
+                                        id="msdrpdd20_title"><span class="ddlabel">EUR</span><span class="description"
+                                            style="display: none;"></span></span></div><input id="msdrpdd20_titleText"
+                                    type="text" autocomplete="off" class="text shadow borderRadius"
+                                    style="display: none;">
+                                <div class="ddChild ddchild_ border shadow" id="msdrpdd20_child"
+                                    style="z-index: 9999; display: none; position: absolute; visibility: visible; height: 99px;">
+                                    <ul>
+                                        
+                                        <li class="enabled _msddli_" title="EUR"><span class="ddlabel">EUR</span>
+                                            <div class="clear"></div>
+                                        </li>
+                                        {# <li class="enabled _msddli_ selected" title="USD"><span
+                                                class="ddlabel">USD</span>
+                                            <div class="clear"></div>
+                                        </li>
+                                        <li class="enabled _msddli_" title="GBR"><span class="ddlabel">GBR</span>
+                                            <div class="clear"></div>
+                                        </li> #}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <ul  class="contact_detail text-center text-lg-start">
+                            <li ><i  class="ti-mobile"></i><span
+                                    >+33 6 31 78 43 97</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div  class="col-md-6">
+                    <div  class="text-center text-md-end">
+                        <ul  class="header_list">
+                            <li >
+                                <a href="/compare"><i class="ti-control-shuffle"></i><span>Comparer</span></a></li>
+                            <li >
+                                <a  href="/wishlist"><i class="ti-heart"></i><span >Wishlist</span></a></li>
+                            {% if app.user %}
+                                <li >
+                                <a  href="/account"><i class="ti-user"></i><span >Mon compte</span></a>
+                                </li>
+                                <li >
+                                <a  href="/logout"><i class="ti-user"></i><span >Se déconnecter</span></a>
+                                </li>
+                            {% else %}
+                            <li >
+                                <a  href="/login"><i class="ti-user"></i><span >Se connecter</span></a>
+                                </li>
+                                <li >
+                                <a  href="/register"><i class="ti-user"></i><span >S'inscrire</span></a>
+                            </li>
+                            {% endif %}
+                            
+                            
+
+                            <li ></li>
+                            <li ></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div  class="bottom_header dark_skin main_menu_uppercase">
+        <div  class="container">
+            <nav  class="navbar navbar-expand-lg"><a 
+                    routerlink="/" class="navbar-brand" ng-reflect-router-link="/" href="/">
+                    <h2 >Buroccasion</h2>
+                </a><button  type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-expanded="false"
+                    class="navbar-toggler collapsed"><span 
+                        class="ion-android-menu"></span></button>
+                <div  id="navbarSupportedContent"
+                    class="navbar-collapse justify-content-end collapse" style="">
+                    <ul  class="navbar-nav">
+                        <li  class="dropdown"><a  routerlink="/"
+                                class="nav-link" ng-reflect-router-link="/" href="/">Accueil</a></li>
+                        <li  class="dropdown"><a  href="#"
+                                data-bs-toggle="dropdown" class="dropdown-toggle nav-link active"
+                                aria-expanded="false">Pages</a>
+                            <div  class="dropdown-menu">
+                                <ul >
+                                    <li ><a  routerlink="/about"
+                                            class="dropdown-item nav-link nav_item" ng-reflect-router-link="/about"
+                                            href="/about">A propos</a></li>
+                                    <li ><a 
+                                            routerlink="/contact" class="dropdown-item nav-link nav_item"
+                                            ng-reflect-router-link="/contact" href="/contact">Contactez-nous</a></li>
+                                    <li ><a  routerlink="/fqa"
+                                            class="dropdown-item nav-link nav_item" ng-reflect-router-link="/fqa"
+                                            href="/fqa">Faq</a></li>
+                                    <li ><a 
+                                            routerlink="/login" class="dropdown-item nav-link nav_item"
+                                            ng-reflect-router-link="/login" href="/login">Se connecter</a></li>
+                                    <li ><a 
+                                            routerlink="/register" class="dropdown-item nav-link nav_item"
+                                            ng-reflect-router-link="/register" href="/register">S'inscrire</a></li>
+                                    <li ><a  routerlink="/terms"
+                                            class="dropdown-item nav-link nav_item" ng-reflect-router-link="/terms"
+                                            href="/terms">politiques et conditions d'utilisation</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li  class="dropdown dropdown-mega-menu"><a
+                                 href="#" data-bs-toggle="dropdown"
+                                class="dropdown-toggle nav-link" aria-expanded="false">Annonces</a>
+                            <div  class="dropdown-menu">
+                                <ul class="mega-menu d-lg-flex">
+                                    <!-- Ameublement bureautique -->
+                                    <li class="mega-menu-col col-lg-3">
+                                        <ul>
+                                            <li class="dropdown-header">Ameublement bureautique</li>
+                                            <li><a class="dropdown-item nav-link nav_item" href="#">Bureau</a></li>
+                                            <li><a class="dropdown-item nav-link nav_item" href="#">Chaise de bureau</a></li>
+                                            <li><a class="dropdown-item nav-link nav_item" href="#">Bibliothèque</a></li>
+                                            <li><a class="dropdown-item nav-link nav_item" href="#">Caisson</a></li>
+                                        </ul>
+                                    </li>
+
+                                    <!-- Fournitures de Bureau -->
+                                    <li class="mega-menu-col col-lg-3">
+                                        <ul>
+                                            <li class="dropdown-header">Fournitures de Bureau</li>
+                                            <li><a class="dropdown-item nav-link nav_item" href="#">Paperboard</a></li>
+                                            <li><a class="dropdown-item nav-link nav_item" href="#">Tableau</a></li>
+                                            <li><a class="dropdown-item nav-link nav_item" href="#">Papiers</a></li>
+                                            <li><a class="dropdown-item nav-link nav_item" href="#">Lot de fournitures de bureau</a></li>
+                                            
+                                            
+                                        </ul>
+                                    </li>
+
+                                    <!-- Rangement bureautique -->
+                                    <li class="mega-menu-col col-lg-3">
+                                        <ul>
+                                            <li class="dropdown-header">Rangement bureautique</li>
+                                            <li><a class="dropdown-item nav-link nav_item" href="#">Organisateur de bureau</a></li>
+                                            <li><a class="dropdown-item nav-link nav_item" href="#">Boites de rangement</a></li>
+                                            <li><a class="dropdown-item nav-link nav_item" href="#">Classeurs/Trieurs</a></li>
+                                            
+                                        </ul>
+                                    </li>
+
+                                    <!-- Matériels informatiques -->
+                                    <li class="mega-menu-col col-lg-3">
+                                        <ul>
+                                            <li class="dropdown-header">Matériels informatiques</li>
+                                            <li><a class="dropdown-item nav-link nav_item" href="#">Ordinateur portable</a></li>
+                                            <li><a class="dropdown-item nav-link nav_item" href="#">Tablette</a></li>
+                                            <li><a class="dropdown-item nav-link nav_item" href="#">Imprimante</a></li>
+                                            <li><a class="dropdown-item nav-link nav_item" href="#">Clavier</a></li>
+                                            <li><a class="dropdown-item nav-link nav_item" href="#">Souris</a></li>
+                                            <li><a class="dropdown-item nav-link nav_item" href="#">Tapis de souris</a></li>
+                                            <li><a class="dropdown-item nav-link nav_item" href="#">Webcam</a></li>
+                                            <li>
+                                                <a class="dropdown-item nav-link nav_item" href="#">
+                                                Câbles de connectique
+                                                    <span class="product-description">(HDMI, USB,VGA ...)</span>
+                                                </a>
+                                            </li>
+                                            <li><a class="dropdown-item nav-link nav_item" href="#">Enceintes</a></li>
+                                            
+                                        </ul>
+                                    </li>
+
+                                    <!-- Logiciels bureautiques -->
+                                    <li class="mega-menu-col col-lg-3">
+                                        <ul>
+                                            <li class="dropdown-header">Logiciels bureautiques</li>
+                                            <li>
+                                                <a class="dropdown-item nav-link nav_item" href="#">
+                                                    Suite bureautique
+                                                    <span class="product-description">(Microsoft Office, LibreOffice, ...)
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li><a class="dropdown-item nav-link nav_item" href="#">Logiciel de gestion de projet</a></li>
+                                            <li><a class="dropdown-item nav-link nav_item" href="#">Logiciel de traitement de texte</a></li>
+                                            <li><a class="dropdown-item nav-link nav_item" href="#">Logiciel de tableur</a></li>
+                                            <li><a class="dropdown-item nav-link nav_item" href="#">Logiciel de présentation</a></li>
+                                            <li><a class="dropdown-item nav-link nav_item" href="#">Logiciel de base de données</a></li>
+                                            <li><a class="dropdown-item nav-link nav_item" href="#">Logiciel de comptabilité</a></li>
+                                            <li><a class="dropdown-item nav-link nav_item" href="#">Autres</a></li>
+                                            
+                                        </ul>
+                                    </li>
+                                </ul>
+                                
+                        <li ><a  routerlink="/contact"
+                                class="nav-link nav_item" ng-reflect-router-link="/contact" href="/contact">Contactez-nous</a></li>
+                    </ul>
+                </div>
+
+                                <!-- Liste non ordonnée représentant la barre de navigation -->
+                <ul class="navbar-nav attr-nav align-items-center">
+
+                    <!-- Élément de la barre de navigation pour la recherche -->
+                    <li>
+                        <!-- Lien "href" est défini sur "javascript:void(0);" pour éviter tout comportement par défaut -->
+                        <a href="javascript:void(0);" class="nav-link search_trigger">
+                            <!-- Icône de loupe pour indiquer qu'il s'agit d'une fonction de recherche -->
+                            <i class="linearicons-magnifier"></i>
+                        </a>
+
+                        <!-- Conteneur pour le champ de recherche, initialement masqué -->
+                        <div class="search_wrap">
+                            <!-- Icône pour fermer la zone de recherche -->
+                            <span class="close-search"><i class="ion-ios-close-empty"></i></span>
+                            
+                            <!-- Formulaire de recherche -->
+                            <form novalidate="" class="ng-untouched ng-pristine ng-valid">
+                                <!-- Champ de texte pour entrer la recherche -->
+                                <input type="text" placeholder="Search" id="search_input" class="form-control">
+                                <!-- Bouton de recherche -->
+                                <button type="submit" class="search_icon"><i class="ion-ios-search-strong"></i></button>
+                            </form>
+                        </div>
+
+                        <!-- Overlays de recherche supplémentaires ( pour des effets visuels) -->
+                        <div class="search_overlay"></div>
+                        <div class="search_overlay"></div>
+                        <div class="search_overlay"></div>
+                        <div class="search_overlay"></div>
+                        <div class="search_overlay"></div>
+                        <div class="search_overlay"></div>
+                        <div class="search_overlay"></div>
+                        <div class="search_overlay"></div>
+                        <div class="search_overlay"></div>
+                        <div class="search_overlay"></div>
+                        <div class="search_overlay"></div>
+                        <div class="search_overlay"></div>
+                        <div class="search_overlay"></div>
+                        <div class="search_overlay"></div>
+                        <div class="search_overlay"></div>
+                        <div class="search_overlay"></div>
+                        <div class="search_overlay"></div>
+                        <div class="search_overlay"></div>
+                        <div class="search_overlay"></div>
+                        <div class="search_overlay"></div>
+                        <div class="search_overlay"></div>
+                        <div class="search_overlay"></div>
+                        <div class="search_overlay"></div>
+                        <div class="search_overlay"></div>
+                        <div class="search_overlay"></div>
+                    </li>
+                </ul>
+
+                                    
+                    
+                    {# <li  class="dropdown cart_dropdown"><a 
+                            href="#" data-bs-toggle="dropdown" class="nav-link cart_trigger"><i
+                                 class="linearicons-cart"></i><span
+                                 class="cart_count">31</span></a>
+                        <div  class="cart_box dropdown-menu dropdown-menu-right">
+                            <ul  class="cart_list">
+                                <li ><a  href="#"
+                                        class="item_remove"><i  class="ion-close"></i></a><a
+                                         href="#"><img 
+                                            width="50" height="50" alt="cart_thumb1"
+                                            src="/assets/files/culottes/culotte_5/36851533762117856286455670026456984987161761684087224828.webp">Culotte
+                                        en dentelle</a><span  class="cart_quantity"> 11 x
+                                        <span  class="cart_amount"><span
+                                                
+                                                class="price_symbole">23,91&nbsp;€</span></span></span></li>
+                                <li ><a  href="#"
+                                        class="item_remove"><i  class="ion-close"></i></a><a
+                                         href="#"><img 
+                                            width="50" height="50" alt="cart_thumb1"
+                                            src="/assets/files/culottes/culotte_9/116945623386141314594418897879593148825527931684087225230.webp">Culotte
+                                        unicolore (sans couture)</a><span 
+                                        class="cart_quantity"> 4 x <span 
+                                            class="cart_amount"><span 
+                                                class="price_symbole">44,54&nbsp;€</span></span></span></li>
+                                <li ><a  href="#"
+                                        class="item_remove"><i  class="ion-close"></i></a><a
+                                         href="#"><img 
+                                            width="50" height="50" alt="cart_thumb1"
+                                            src="/assets/files/culottes/culotte_7/825380258783085919054835307976332473139779511684087224936.webp">Culotte
+                                        en dentelle</a><span  class="cart_quantity"> 3 x
+                                        <span  class="cart_amount"><span
+                                                
+                                                class="price_symbole">17,17&nbsp;€</span></span></span></li>
+                                <li ><a  href="#"
+                                        class="item_remove"><i  class="ion-close"></i></a><a
+                                         href="#"><img 
+                                            width="50" height="50" alt="cart_thumb1"
+                                            src="/assets/files/970670668041335927385290724653240714148366921684565574162.webp">Bikini
+                                        unicolore côtelé</a><span  class="cart_quantity"> 4
+                                        x <span  class="cart_amount"><span
+                                                
+                                                class="price_symbole">28,24&nbsp;€</span></span></span></li>
+                                <li ><a  href="#"
+                                        class="item_remove"><i  class="ion-close"></i></a><a
+                                         href="#"><img 
+                                            width="50" height="50" alt="cart_thumb1"
+                                            src="/assets/files/culottes/culotte_4/87087411019387380483560199609827534551691041684087224752.webp">Culotte
+                                        unicolore femme (sans couture)</a><span 
+                                        class="cart_quantity"> 2 x <span 
+                                            class="cart_amount"><span 
+                                                class="price_symbole">56,07&nbsp;€</span></span></span></li>
+                                <li ><a  href="#"
+                                        class="item_remove"><i  class="ion-close"></i></a><a
+                                         href="#"><img 
+                                            width="50" height="50" alt="cart_thumb1"
+                                            src="/assets/files/culottes/culotte_2/64690629656996101166169787112869964617448491684087224479.webp">Tanga
+                                        unicolore</a><span  class="cart_quantity"> 3 x <span
+                                             class="cart_amount"><span
+                                                
+                                                class="price_symbole">38,84&nbsp;€</span></span></span></li>
+                                <li ><a  href="#"
+                                        class="item_remove"><i  class="ion-close"></i></a><a
+                                         href="#"><img 
+                                            width="50" height="50" alt="cart_thumb1"
+                                            src="/assets/files/culottes/culotte_8/10518988473111520886581236853833613928085898971684087225041.webp">Culotte
+                                        en dentelle</a><span  class="cart_quantity"> 1 x
+                                        <span  class="cart_amount"><span
+                                                
+                                                class="price_symbole">58,43&nbsp;€</span></span></span></li>
+                                <li ><a  href="#"
+                                        class="item_remove"><i  class="ion-close"></i></a><a
+                                         href="#"><img 
+                                            width="50" height="50" alt="cart_thumb1"
+                                            src="/assets/files/culottes/culotte_3/6138170893214881132536005127536132168491807951684087224669.webp">Culotte
+                                        à blocs de couleurs en dentelle</a><span 
+                                        class="cart_quantity"> 3 x <span 
+                                            class="cart_amount"><span 
+                                                class="price_symbole">54,95&nbsp;€</span></span></span></li>
+                            </ul>
+                            <div  class="cart_footer">
+                                <p  class="cart_total"><strong
+                                        >Subtotal:</strong><span
+                                         class="cart_price"><span
+                                            
+                                            class="price_symbole"></span></span>1 057,58&nbsp;€ </p>
+                                <p  class="cart_buttons"><a 
+                                        routerlink="/cart" class="btn btn-fill-line view-cart"
+                                        ng-reflect-router-link="/cart" href="/cart">View Cart</a><a
+                                         routerlink="/checkout"
+                                        class="btn btn-fill-out checkout" ng-reflect-router-link="/checkout"
+                                        href="/checkout">Checkout</a></p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div> #}
+    </div>
+</header>

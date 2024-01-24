@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{# Title permet ici de surcharger au niveau de la base => fichier base.html.twig#}
+{% block title %}Burocassion Home page{% endblock %}
+
+{% block body %}
+{# <style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! ✅</h1>
+
+    This friendly message is coming from:
+    <ul>
+        <li>Your controller at <code><a href="{{ 'C:/Users/STE-CM04-SG05-Admin/buroccasion/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
+        <li>Your template at <code><a href="{{ 'C:/Users/STE-CM04-SG05-Admin/buroccasion/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
+    </ul>
+</div> #}
+
+<h1>Buroccasion</h1>
+<p class="slogan_marketing">Donnez une seconde vie à votre espace de travail avec Buroccasion - Vendez, Achetez, Économisez!</p>
+<br>
+<br>
+<p>Transformez vos déchets en opportunités ! Offrez une nouvelle vie à votre espace de travail avec Buroccasion - <span>Vendez, Achetez, Économisez et participez</span> à une nouvelle ère de durabilité et d'efficacité</p>
+
+
+{% endblock %}
