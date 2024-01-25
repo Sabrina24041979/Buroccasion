@@ -1,0 +1,265 @@
+
+1 - User
+        - id (primary key)
+        - email
+        - paswword (haché)
+        - roles (ROLE_USER, ROLE_SELLER, ROLE_ADMIN...)
+        - created_at
+        - updated_at 
+        
+2 - Profile
+        - pseudo
+        - civilité
+        - fullname
+        - lastname
+        - adresse
+        - complément d'adresse
+        - code postal
+        - ville
+        - Pays
+        - created_at
+        - updated_at 
+
+2 - Product/Announcement (stocker les produits/les annonces au sein d'une BDD pour alimenter l'affichage du site)
+        - announcement_id (Primary Key)
+        - user_id (Clé étrangère vers la table 'users')
+        - category_id (Clé étrangère vers la category ')
+        - name
+        - slug (mot créé à partir du nom du produit. Cela permettra de retrouver un produit de manière unique. L'avantage  de créer un slug, permet d'améliorer grandement le référencement). calculatrice pour collège => calculatrice-pour-college => chaîne unique => amélioration de référencement => Pour les moteurs de recherche cela permet de retrouver plus facilement le produit.
+        - description
+        - more_description
+        - additional_infos
+        - price
+        - categories
+        - relatedProducts (produits connexes)
+        - reviews
+        - brand (marque)
+        - images
+        - status
+        - imageUrls
+        - created_at
+        - updated_at
+
+3 - Category (pour ranger les produits et faciliter l'accès aux produits)
+        - nom 
+        - slug (pour le référencement)
+        - description
+
+4 - Evaluations
+        - evaluation_id (Primary Key)
+        - commentaire
+        - note
+        - utilisateur_evaluant_id (Clé étrangère vers la table Utilisateurs)
+        - utilisateur_evalue_id (Clé étrangère vers la table Utilisateurs)
+        
+5 - Comment 
+        - comment_id
+        - user_id
+        - product_id
+        - Comment
+        - created_at
+
+6 - Transactions
+        - user_id
+        - date_transactions
+        - status (en cours, expédié, terminé, annulé...)
+
+7 - TransactionsDetails
+        - transaction_details_id
+        - transaction_id
+        - productif_id
+
+
+
+Bien sûr, voici une proposition corrigée pour vos tables avec l'ajout de clés primaires, de clés étrangères et de relations.
+
+Table 'Users' :
+id (Primary Key)
+email
+password (haché, bien sûr)
+roles (ROLE_USER, ROLE_SELLER, ROLE_ADMIN...)
+created_at
+updated_at
+
+Table 'Profiles' :
+id (Primary Key)
+user_id (Clé étrangère vers la table 'users')
+pseudo
+civility
+fullname
+lastname
+address
+address_additional
+postal_code
+city
+country
+created_at
+updated_at
+
+Table 'Announcements' (pour stocker les produits/annonces) :
+id (Primary Key)
+user_id (Clé étrangère vers la table 'users')
+category_id (Clé étrangère vers la table 'categories')
+name
+slug
+description
+more_description
+additional_infos
+price
+relatedProducts (produits connexes)
+reviews
+brand
+images
+status
+image_urls
+created_at
+updated_at
+
+Table 'Categories' :
+id (Primary Key)
+name
+slug
+description
+
+Table 'Evaluations' :
+id (Primary Key)
+comment
+note
+evaluator_id (Clé étrangère vers la table 'users')
+evaluated_user_id (Clé étrangère vers la table 'users')
+
+Table 'Comments' :
+id (Primary Key)
+user_id (Clé étrangère vers la table 'users')
+product_id (Clé étrangère vers la table 'announcements')
+comment
+created_at
+
+Table 'Transactions' :
+id (Primary Key)
+user_id (Clé étrangère vers la table 'users')
+date_transaction
+status (en cours, expédié, terminé, annulé...)
+
+Table 'TransactionDetails' :
+id (Primary Key)
+transaction_id (Clé étrangère vers la table 'transactions')
+product_id (Clé étrangère vers la table 'announcements')
+
+Ces tables comprennent des clés primaires (id) et des clés étrangères (user_id, category_id, evaluator_id, evaluated_user_id, user_id, product_id, transaction_id, product_id) pour établir des relations entre les entités. Assurez-vous de bien configurer les relations dans votre modèle de données Symfony.
+
+D'accord, examinons les relations entre les tables. Voici comment vous pourriez définir ces relations :
+
+Users - Profiles :
+Relation : OneToOne
+Un utilisateur (User) est associé à un seul profil (Profile).
+Un profil est associé à un seul utilisateur.
+
+
+Users - Evaluations :
+Relation : OneToMany (pour l'utilisateur évaluant) - ManyToOne (pour l'utilisateur évalué)
+Un utilisateur peut laisser plusieurs évaluations.
+Chaque évaluation est associée à un seul utilisateur évaluant et un seul utilisateur évalué.
+
+Users - Comments :
+Relation : OneToMany
+Un utilisateur peut laisser plusieurs commentaires.
+Chaque commentaire est associé à un seul utilisateur et un seul produit.
+
+Users - Transactions :
+Relation : OneToMany
+Un utilisateur peut effectuer plusieurs transactions. 
+Chaque transaction est associée à un seul utilisateur.
+
+Announcements - Users :
+Relation : ManyToOne (pour l'auteur) - OneToMany (pour les annonces)
+Chaque annonce est associée à un seul utilisateur (auteur).
+Un utilisateur peut créer plusieurs annonces.
+
+Announcements - Categories :
+Relation : ManyToOne (pour la catégorie) - OneToMany (pour les annonces)
+Chaque annonce est associée à une seule catégorie.
+Une catégorie peut avoir plusieurs annonces.
+
+Announcements - Evaluations :
+Relation : OneToMany
+Une annonce peut avoir plusieurs évaluations.
+Chaque évaluation est associée à une seule annonce.
+
+Announcements - TransactionDetails :
+Relation : OneToMany
+Une annonce peut être incluse dans plusieurs détails de transaction.
+Chaque détail de transaction est associé à une seule annonce.
+
+Assurez-vous de configurer ces relations dans vos entités Symfony pour tirer pleinement parti du système ORM. Les annotations Doctrine sont souvent utilisées pour définir ces relations dans vos entités Symfony.
+
+Quelle propriété de chaque table est en relation (manytomany, onetomany, manytoone...) avec la propriété d'une autre table?
+
+
+
+Dans le modèle de données que vous avez présenté, voici comment les propriétés de chaque table sont en relation avec celles d'une autre table en termes de relation (ManyToOne, OneToMany, OneToOne, ManyToMany) :
+
+User Entity :
+
+Relations :
+OneToMany avec la table Evaluations (user_id dans Evaluations est la clé étrangère vers id dans Users).
+OneToMany avec la table Comments (user_id dans Comments est la clé étrangère vers id dans Users).
+OneToMany avec la table Announcements (user_id dans Announcements est la clé étrangère vers id dans Users).
+OneToMany avec la table Transactions (user_id dans Transactions est la clé étrangère vers id dans Users).
+OneToOne avec la table Profiles (user_id dans Profiles est la clé étrangère vers id dans Users).
+
+Profile Entity :
+Relations :
+OneToOne avec la table Users (user_id dans Profiles est la clé étrangère vers id dans Users).
+
+Announcement Entity :
+Relations :
+ManyToOne avec la table Users (user_id dans Announcements est la clé étrangère vers id dans Users).
+ManyToOne avec la table Categories (category_id dans Announcements est la clé étrangère vers id dans Categories).
+OneToMany avec la table Evaluations (announcement_id dans Evaluations est la clé étrangère vers id dans Announcements).
+OneToMany avec la table TransactionDetails (announcement_id dans TransactionDetails est la clé étrangère vers id dans Announcements).
+
+Category Entity :
+Relations :
+OneToMany avec la table Announcements (id dans Categories est la clé étrangère vers category_id dans Announcements).
+
+Evaluation Entity :
+Relations :
+ManyToOne avec la table Users (utilisateur_evaluant_id dans Evaluations est la clé étrangère vers id dans Users).
+
+
+Comment Entity :
+Relations :
+ManyToOne avec la table Users (user_id dans Comments est la clé étrangère vers id dans Users).
+ManyToOne avec la table Announcements (product_id dans Comments est la clé étrangère vers id dans Announcements).
+
+Transaction Entity :
+Relations :
+ManyToOne avec la table Users (user_id dans Transactions est la clé étrangère vers id dans Users).
+OneToMany avec la table TransactionDetails (id dans Transactions est la clé étrangère vers transaction_id dans TransactionDetails).
+
+TransactionDetails Entity :
+Relations :
+ManyToOne avec la table Announcements (product_id dans TransactionDetails est la clé étrangère vers id dans Announcements).
+ManyToOne avec la table Transactions (transaction_id dans TransactionDetails est la clé étrangère vers id dans Transactions).
+
+
+OneToMany avec la table TransactionDetails (announcement_id dans TransactionDetails est la clé étrangère vers id dans Announcements) :
+
+Cela signifie qu'un enregistrement dans la table Announcements peut avoir plusieurs enregistrements associés dans la table TransactionDetails, mais chaque enregistrement dans la table TransactionDetails ne peut être associé qu'à un seul enregistrement dans la table Announcements.
+En d'autres termes, un produit/annonce (dans la table Announcements) peut avoir plusieurs détails de transaction (dans la table TransactionDetails). Cette relation est généralement utilisée pour représenter des détails spécifiques associés à une annonce, comme des transactions liées à cette annonce.
+
+ManyToOne avec la table Announcements (announcement_id dans Evaluations est la clé étrangère vers id dans Announcements) :
+
+Cela signifie qu'un enregistrement dans la table Announcements peut être référencé par plusieurs enregistrements dans la table Evaluations, mais chaque enregistrement dans la table Evaluations ne peut être associé qu'à un seul enregistrement dans la table Announcements.
+En d'autres termes, plusieurs évaluations peuvent être liées à une seule annonce. Cette relation permet de stocker les évaluations qui sont spécifiquement associées à une annonce.
+
+OneToMany avec la table TransactionDetails (id dans Transactions est la clé étrangère vers transaction_id dans TransactionDetails) :
+
+Cela signifie qu'un enregistrement dans la table Transactions peut avoir plusieurs enregistrements associés dans la table TransactionDetails, mais chaque enregistrement dans la table TransactionDetails ne peut être associé qu'à un seul enregistrement dans la table Transactions.
+En d'autres termes, une transaction peut inclure plusieurs détails de transaction, mais chaque détail de transaction est associé à une seule transaction. Cette relation est souvent utilisée pour stocker des détails spécifiques sur chaque transaction.
+
+ManyToOne avec la table Announcements (product_id dans TransactionDetails est la clé étrangère vers id dans Announcements) :
+
+Cela signifie qu'un enregistrement dans la table Announcements peut être référencé par plusieurs enregistrements dans la table TransactionDetails, mais chaque enregistrement dans la table TransactionDetails ne peut être associé qu'à un seul enregistrement dans la table Announcements.
+En d'autres termes, chaque détail de transaction est associé à une annonce spécifique. Cette relation permet de lier chaque détail de transaction à l'annonce correspondante.
