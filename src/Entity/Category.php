@@ -26,8 +26,10 @@ class Category
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\ManyToMany(targetEntity: Announcements::class, mappedBy: 'category')]
+    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Announcements::class)]
     private Collection $announcements;
+
+    
 
     public function __construct()
     {
@@ -87,7 +89,7 @@ class Category
     {
         if (!$this->announcements->contains($announcement)) {
             $this->announcements->add($announcement);
-            $announcement->addCategory($this);
+            $announcement->setCategory($this);
         }
 
         return $this;
@@ -96,9 +98,14 @@ class Category
     public function removeAnnouncement(Announcements $announcement): static
     {
         if ($this->announcements->removeElement($announcement)) {
-            $announcement->removeCategory($this);
+            // set the owning side to null (unless already changed)
+            if ($announcement->getCategory() === $this) {
+                $announcement->setCategory(null);
+            }
         }
 
         return $this;
     }
+
+    
 }

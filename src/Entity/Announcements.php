@@ -52,19 +52,18 @@ class Announcements
     #[ORM\OneToMany(mappedBy: 'announcement', targetEntity: Evaluations::class)]
     private Collection $evaluations;
 
-    #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'announcements')]
-    private Collection $category;
-
     #[ORM\OneToMany(mappedBy: 'announcement', targetEntity: TransactionDetails::class)]
     private Collection $transactionDetails;
 
     #[ORM\OneToMany(mappedBy: 'announcement', targetEntity: Comments::class)]
     private Collection $comments;
 
+    #[ORM\ManyToOne(inversedBy: 'announcements')]
+    private ?Category $category = null;
+
     public function __construct()
     {
         $this->evaluations = new ArrayCollection();
-        $this->category = new ArrayCollection();
         $this->transactionDetails = new ArrayCollection();
         $this->comments = new ArrayCollection();
     }
@@ -237,30 +236,6 @@ class Announcements
     }
 
     /**
-     * @return Collection<int, Category>
-     */
-    public function getCategory(): Collection
-    {
-        return $this->category;
-    }
-
-    public function addCategory(Category $category): static
-    {
-        if (!$this->category->contains($category)) {
-            $this->category->add($category);
-        }
-
-        return $this;
-    }
-
-    public function removeCategory(Category $category): static
-    {
-        $this->category->removeElement($category);
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, TransactionDetails>
      */
     public function getTransactionDetails(): Collection
@@ -316,6 +291,18 @@ class Announcements
                 $comment->setAnnouncement(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): static
+    {
+        $this->category = $category;
 
         return $this;
     }
