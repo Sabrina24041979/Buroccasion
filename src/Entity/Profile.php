@@ -32,8 +32,8 @@ class Profile
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $adress_additional = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $postal_code = null;
+    #[ORM\Column(nullable: true)]
+    private ?int $postal_code = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $city = null;
@@ -127,12 +127,12 @@ class Profile
         return $this;
     }
 
-    public function getPostalCode(): ?string
+    public function getPostalCode(): ?int
     {
         return $this->postal_code;
     }
 
-    public function setPostalCode(?string $postal_code): static
+    public function setPostalCode(?int $postal_code): static
     {
         $this->postal_code = $postal_code;
 

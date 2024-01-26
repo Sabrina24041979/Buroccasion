@@ -26,7 +26,7 @@ class UserController extends AbstractController
     {
         $email = (new Email())
             ->from('contact@monapplication.fr')
-            ->to('sabrina.montassar.04@gmail.com')
+            ->to('Buroccasion24@gmail.com')
             //->cc('cc@example.com')
             //->bcc('bcc@example.com')
             //->replyTo('fabien@example.com')

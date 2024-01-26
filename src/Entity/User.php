@@ -43,30 +43,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
     private ?Profile $profile = null;
 
-    #[ORM\OneToMany(mappedBy: 'User', targetEntity: Announcements::class)]
-    private Collection $announcements;
-
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Transactions::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Transaction::class)]
     private Collection $transactions;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Comments::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Announcement::class)]
+    private Collection $announcements;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Comment::class)]
     private Collection $comments;
 
-    #[ORM\OneToMany(mappedBy: 'evaluator', targetEntity: Evaluations::class)]
+    #[ORM\OneToMany(mappedBy: 'evaluator', targetEntity: Evaluation::class)]
     private Collection $evaluations;
 
-    #[ORM\OneToMany(mappedBy: 'evaluated_user', targetEntity: Evaluations::class)]
-    private Collection $evaluated_user;
-
-    public function __construct(Type $var = null, ){
-        $this->setCreatedAt(new DateTime());
-        $this->announcements = new ArrayCollection();
+    public function __construct()
+    {
         $this->transactions = new ArrayCollection();
+        $this->announcements = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->evaluations = new ArrayCollection();
-        $this->evaluated_user = new ArrayCollection();
     }
 
+   
     public function getId(): ?int
     {
         return $this->id;
@@ -184,44 +181,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Announcements>
-     */
-    public function getAnnouncements(): Collection
-    {
-        return $this->announcements;
-    }
-
-    public function addAnnouncement(Announcements $announcement): static
-    {
-        if (!$this->announcements->contains($announcement)) {
-            $this->announcements->add($announcement);
-            $announcement->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAnnouncement(Announcements $announcement): static
-    {
-        if ($this->announcements->removeElement($announcement)) {
-            // set the owning side to null (unless already changed)
-            if ($announcement->getUser() === $this) {
-                $announcement->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Transactions>
+     * @return Collection<int, Transaction>
      */
     public function getTransactions(): Collection
     {
         return $this->transactions;
     }
 
-    public function addTransaction(Transactions $transaction): static
+    public function addTransaction(Transaction $transaction): static
     {
         if (!$this->transactions->contains($transaction)) {
             $this->transactions->add($transaction);
@@ -231,7 +198,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function removeTransaction(Transactions $transaction): static
+    public function removeTransaction(Transaction $transaction): static
     {
         if ($this->transactions->removeElement($transaction)) {
             // set the owning side to null (unless already changed)
@@ -244,14 +211,44 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Comments>
+     * @return Collection<int, Announcement>
+     */
+    public function getAnnouncements(): Collection
+    {
+        return $this->announcements;
+    }
+
+    public function addAnnouncement(Announcement $announcement): static
+    {
+        if (!$this->announcements->contains($announcement)) {
+            $this->announcements->add($announcement);
+            $announcement->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnnouncement(Announcement $announcement): static
+    {
+        if ($this->announcements->removeElement($announcement)) {
+            // set the owning side to null (unless already changed)
+            if ($announcement->getUser() === $this) {
+                $announcement->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Comment>
      */
     public function getComments(): Collection
     {
         return $this->comments;
     }
 
-    public function addComment(Comments $comment): static
+    public function addComment(Comment $comment): static
     {
         if (!$this->comments->contains($comment)) {
             $this->comments->add($comment);
@@ -261,7 +258,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function removeComment(Comments $comment): static
+    public function removeComment(Comment $comment): static
     {
         if ($this->comments->removeElement($comment)) {
             // set the owning side to null (unless already changed)
@@ -274,14 +271,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, Evaluations>
+     * @return Collection<int, Evaluation>
      */
     public function getEvaluations(): Collection
     {
         return $this->evaluations;
     }
 
-    public function addEvaluation(Evaluations $evaluation): static
+    public function addEvaluation(Evaluation $evaluation): static
     {
         if (!$this->evaluations->contains($evaluation)) {
             $this->evaluations->add($evaluation);
@@ -291,7 +288,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function removeEvaluation(Evaluations $evaluation): static
+    public function removeEvaluation(Evaluation $evaluation): static
     {
         if ($this->evaluations->removeElement($evaluation)) {
             // set the owning side to null (unless already changed)
@@ -303,33 +300,4 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Evaluations>
-     */
-    public function getEvaluatedUser(): Collection
-    {
-        return $this->evaluated_user;
-    }
-
-    public function addEvaluatedUser(Evaluations $evaluatedUser): static
-    {
-        if (!$this->evaluated_user->contains($evaluatedUser)) {
-            $this->evaluated_user->add($evaluatedUser);
-            $evaluatedUser->setEvaluatedUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeEvaluatedUser(Evaluations $evaluatedUser): static
-    {
-        if ($this->evaluated_user->removeElement($evaluatedUser)) {
-            // set the owning side to null (unless already changed)
-            if ($evaluatedUser->getEvaluatedUser() === $this) {
-                $evaluatedUser->setEvaluatedUser(null);
-            }
-        }
-
-        return $this;
-    }
 }

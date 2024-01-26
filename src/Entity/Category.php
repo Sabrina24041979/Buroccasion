@@ -5,11 +5,10 @@ namespace App\Entity;
 use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\UX\Turbo\Attribute\Broadcast;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
-#[Broadcast]
 class Category
 {
     #[ORM\Id]
@@ -26,10 +25,14 @@ class Category
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Announcements::class)]
+    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Announcement::class)]
     private Collection $announcements;
 
-    
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $created_at = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $updated_at = null;
 
     public function __construct()
     {
@@ -76,16 +79,16 @@ class Category
 
         return $this;
     }
-
+    
     /**
-     * @return Collection<int, Announcements>
+     * @return Collection<int, Announcement>
      */
     public function getAnnouncements(): Collection
     {
         return $this->announcements;
     }
 
-    public function addAnnouncement(Announcements $announcement): static
+    public function addAnnouncement(Announcement $announcement): static
     {
         if (!$this->announcements->contains($announcement)) {
             $this->announcements->add($announcement);
@@ -95,7 +98,7 @@ class Category
         return $this;
     }
 
-    public function removeAnnouncement(Announcements $announcement): static
+    public function removeAnnouncement(Announcement $announcement): static
     {
         if ($this->announcements->removeElement($announcement)) {
             // set the owning side to null (unless already changed)
@@ -103,6 +106,30 @@ class Category
                 $announcement->setCategory(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->created_at;
+    }
+
+    public function setCreatedAt(?\DateTimeInterface $created_at): static
+    {
+        $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(?\DateTimeInterface $updated_at): static
+    {
+        $this->updated_at = $updated_at;
 
         return $this;
     }
