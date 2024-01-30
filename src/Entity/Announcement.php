@@ -34,8 +34,8 @@ class Announcement
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $brand = null;
 
-    #[ORM\Column(type: Types::ARRAY, nullable: true)]
-    private ?array $image = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $status = null;
